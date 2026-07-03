@@ -28,7 +28,7 @@ export default function Landing() {
               </Link>
             </div>
             <p className="mt-4 text-sm text-inkmut">
-              Free plan: 5 checks per month. No card required.
+              No account needed for your first checks — 3 free per day. Free accounts get 5 per month + history.
             </p>
           </div>
 

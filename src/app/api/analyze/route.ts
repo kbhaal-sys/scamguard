@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
 import { buildUserPrompt, callLLM, parseAnalysis } from "@/lib/ai";
 import { inspectUrl } from "@/lib/url-check";
@@ -9,52 +10,74 @@ export const maxDuration = 60;
 
 const MAX_TEXT = 12000;
 const MAX_IMAGE_BYTES = 4.5 * 1024 * 1024;
+const ANON_DAILY_LIMIT = 3;
 
 export async function POST(req: NextRequest) {
   try {
-    // ---- 1. Auth ----
     const supabase = await createClient();
+    const service = createServiceClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) {
-      return NextResponse.json({ error: "Please sign in to run a scan." }, { status: 401 });
-    }
+    let usedForUser = 0;
 
-    // ---- 2. Scan limit (with monthly reset) ----
-    const service = createServiceClient();
-    const { data: profile, error: profErr } = await service
-      .from("users")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-    if (profErr || !profile) {
-      return NextResponse.json({ error: "Account profile not found." }, { status: 500 });
-    }
+    // ---- 1. Usage limits ----
+    if (user) {
+      // Signed-in: monthly quota (free) / unlimited (plus, family)
+      const { data: profile, error: profErr } = await service
+        .from("users").select("*").eq("id", user.id).single();
+      if (profErr || !profile) {
+        return NextResponse.json({ error: "Account profile not found." }, { status: 500 });
+      }
+      const monthStart = new Date();
+      monthStart.setUTCDate(1);
+      const currentPeriod = monthStart.toISOString().slice(0, 10);
+      let used = profile.scans_used_this_month as number;
+      if (profile.usage_period_start !== currentPeriod) {
+        used = 0;
+        await service.from("users")
+          .update({ scans_used_this_month: 0, usage_period_start: currentPeriod })
+          .eq("id", user.id);
+      }
+      const unlimited = profile.subscription_status !== "free";
+      if (!unlimited && used >= profile.monthly_scan_limit) {
+        return NextResponse.json(
+          {
+            error: `You've used all ${profile.monthly_scan_limit} free scans this month. Upgrade to Plus for unlimited scans.`,
+            code: "limit_reached",
+          },
+          { status: 403 }
+        );
+      }
+      usedForUser = used;
+    } else {
+      // Anonymous: small daily quota per hashed IP
+      const ip =
+        req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+        req.headers.get("x-real-ip") ||
+        "unknown";
+      const ipHash = createHash("sha256").update(ip).digest("hex");
+      const today = new Date().toISOString().slice(0, 10);
 
-    const monthStart = new Date();
-    monthStart.setUTCDate(1);
-    const currentPeriod = monthStart.toISOString().slice(0, 10);
-    let used = profile.scans_used_this_month as number;
-    if (profile.usage_period_start !== currentPeriod) {
-      used = 0;
+      const { data: usage } = await service
+        .from("anon_usage").select("count")
+        .eq("ip_hash", ipHash).eq("day", today).maybeSingle();
+      const count = usage?.count ?? 0;
+      if (count >= ANON_DAILY_LIMIT) {
+        return NextResponse.json(
+          {
+            error: `You've used the ${ANON_DAILY_LIMIT} free checks for today. Create a free account for 5 scans every month — plus saved history.`,
+            code: "anon_limit_reached",
+          },
+          { status: 403 }
+        );
+      }
       await service
-        .from("users")
-        .update({ scans_used_this_month: 0, usage_period_start: currentPeriod })
-        .eq("id", user.id);
-    }
-    const unlimited = profile.subscription_status !== "free";
-    if (!unlimited && used >= profile.monthly_scan_limit) {
-      return NextResponse.json(
-        {
-          error: `You've used all ${profile.monthly_scan_limit} free scans this month. Upgrade to Plus for unlimited scans.`,
-          code: "limit_reached",
-        },
-        { status: 403 }
-      );
+        .from("anon_usage")
+        .upsert({ ip_hash: ipHash, day: today, count: count + 1 }, { onConflict: "ip_hash,day" });
     }
 
-    // ---- 3. Validate input ----
+    // ---- 2. Validate input ----
     const body = await req.json();
     const inputType = body.input_type as InputType;
     const category = typeof body.category === "string" ? body.category.slice(0, 40) : "unknown";
@@ -81,20 +104,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unknown input type." }, { status: 400 });
     }
 
-    // ---- 4. Enrich URLs ----
+    // ---- 3. Enrich URLs ----
     let urlMetadata: string | undefined;
     if (url) urlMetadata = await inspectUrl(url);
 
-    // ---- 5. LLM analysis ----
+    // ---- 4. LLM analysis ----
     const userPrompt = buildUserPrompt({ category, text, url, urlMetadata, hasImage: !!imageBase64 });
     const raw = await callLLM({ userPrompt, imageBase64, imageMediaType });
     const result = parseAnalysis(raw);
 
-    // ---- 6. Persist ----
+    // ---- 5. Persist ----
     const { data: scan, error: insErr } = await service
       .from("scans")
       .insert({
-        user_id: user.id,
+        user_id: user?.id ?? null, // null = anonymous scan
         input_type: inputType,
         original_text: text ?? null,
         uploaded_file_url: null, // images are analyzed in-memory; not stored (privacy)
@@ -118,10 +141,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Could not save the scan. Try again." }, { status: 500 });
     }
 
-    await service
-      .from("users")
-      .update({ scans_used_this_month: used + 1 })
-      .eq("id", user.id);
+    if (user) {
+      await service.from("users").update({ scans_used_this_month: usedForUser + 1 }).eq("id", user.id);
+    }
 
     return NextResponse.json({ id: scan.id, result });
   } catch (e) {

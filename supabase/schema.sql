@@ -32,7 +32,8 @@ create trigger on_auth_user_created
 -- ---------- scans ----------
 create table if not exists public.scans (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references public.users(id) on delete cascade,
+  -- null user_id = anonymous scan (no account)
+  user_id uuid references public.users(id) on delete cascade,
   input_type text not null check (input_type in ('text','image','url')),
   original_text text,
   uploaded_file_url text,
@@ -75,9 +76,24 @@ drop policy if exists "users read own scans" on public.scans;
 create policy "users read own scans" on public.scans
   for select using (auth.uid() = user_id);
 
+-- anonymous scans are readable by anyone who has the (unguessable) UUID link
+drop policy if exists "anonymous scans readable by link" on public.scans;
+create policy "anonymous scans readable by link" on public.scans
+  for select using (user_id is null);
+
 drop policy if exists "users read own reports" on public.reports;
 create policy "users read own reports" on public.reports
   for select using (auth.uid() = user_id);
 
 -- Inserts/updates happen server-side with the service-role key
 -- (bypasses RLS), so no insert policies are required for MVP.
+
+-- ---------- anonymous rate limiting (per hashed IP, per day) ----------
+create table if not exists public.anon_usage (
+  ip_hash text not null,
+  day date not null default current_date,
+  count int not null default 0,
+  primary key (ip_hash, day)
+);
+alter table public.anon_usage enable row level security;
+-- no public policies: only the service-role key touches this table

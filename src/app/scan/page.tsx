@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ScanForm from "@/components/ScanForm";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
 
@@ -22,9 +23,19 @@ export default async function ScanPage() {
       <p className="mt-2 text-lg text-inkmut">
         A message, a link, an invoice, an offer — if it involves money or personal data, scan it first.
       </p>
-      {remaining !== null && (
-        <p className="mt-3 inline-block rounded-full bg-guard-soft px-4 py-1.5 text-sm font-semibold text-guard-dark">
-          {remaining} free {remaining === 1 ? "scan" : "scans"} left this month
+      {user ? (
+        remaining !== null && (
+          <p className="mt-3 inline-block rounded-full bg-guard-soft px-4 py-1.5 text-sm font-semibold text-guard-dark">
+            {remaining} free {remaining === 1 ? "scan" : "scans"} left this month
+          </p>
+        )
+      ) : (
+        <p className="mt-3 text-sm text-inkmut">
+          No account needed — you get 3 free checks per day.{" "}
+          <Link href="/login" className="font-semibold text-guard hover:underline">
+            Create a free account
+          </Link>{" "}
+          for 5 scans per month plus saved history.
         </p>
       )}
       <div className="mt-6">
