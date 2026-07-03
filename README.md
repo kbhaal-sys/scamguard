@@ -6,7 +6,7 @@ or likely a scam — and explains the risk in plain language.
 
 ## Stack
 
-- **Next.js 14 (App Router) + TypeScript + Tailwind CSS**
+- **Next.js 16 (App Router) + TypeScript + Tailwind CSS**
 - **Supabase** — authentication + Postgres (with RLS)
 - **LLM analysis** — OpenAI *or* Anthropic (switch via `LLM_PROVIDER`), vision-capable so
   screenshots are read directly by the model (see `src/lib/ocr.ts` for the standalone-OCR placeholder)
