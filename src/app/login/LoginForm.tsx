@@ -38,11 +38,11 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={submit} className="mt-6 rounded-xl2 border border-line bg-white p-6">
-      <div className="mb-5 grid grid-cols-2 gap-2 rounded-xl bg-paper p-1.5">
+    <form onSubmit={submit} className="glass fade-up mt-6 rounded-3xl p-6">
+      <div className="glass-soft mb-5 grid grid-cols-2 gap-2 rounded-2xl p-1.5">
         {(["signin", "signup"] as const).map((m) => (
           <button key={m} type="button" onClick={() => setMode(m)}
-            className={`rounded-lg px-3 py-2.5 font-semibold ${mode === m ? "bg-guard text-white" : "text-inkmut"}`}>
+            className={`rounded-lg px-3 py-2.5 font-semibold ${mode === m ? "btn-shine text-white" : "text-inkmut hover:bg-white/50"}`}>
             {m === "signin" ? "Sign in" : "Create account"}
           </button>
         ))}
@@ -50,17 +50,17 @@ export default function LoginForm() {
       <label className="block">
         <span className="mb-1 block font-semibold">Email</span>
         <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-line bg-paper p-3.5 outline-none focus:border-guard" />
+          className="w-full rounded-2xl border border-white/70 bg-white/60 p-3.5 outline-none backdrop-blur transition focus:border-guard focus:bg-white/80" />
       </label>
       <label className="mt-4 block">
         <span className="mb-1 block font-semibold">Password</span>
         <input type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-xl border border-line bg-paper p-3.5 outline-none focus:border-guard" />
+          className="w-full rounded-2xl border border-white/70 bg-white/60 p-3.5 outline-none backdrop-blur transition focus:border-guard focus:bg-white/80" />
         {mode === "signup" && <span className="mt-1 block text-sm text-inkmut">At least 8 characters.</span>}
       </label>
-      {err && <p role="alert" className="mt-4 rounded-lg bg-red-50 px-4 py-3 font-medium text-risk-high">{err}</p>}
-      {msg && <p className="mt-4 rounded-lg bg-guard-soft px-4 py-3 font-medium text-guard-dark">{msg}</p>}
-      <button disabled={loading} className="mt-6 w-full rounded-xl bg-guard px-6 py-3.5 text-lg font-bold text-white hover:bg-guard-dark disabled:opacity-60">
+      {err && <p role="alert" className="mt-4 rounded-xl border border-risk-high/20 bg-red-50/80 px-4 py-3 font-medium text-risk-high backdrop-blur">{err}</p>}
+      {msg && <p className="glass-tint mt-4 rounded-xl px-4 py-3 font-medium text-guard-dark">{msg}</p>}
+      <button disabled={loading} className="btn-shine mt-6 w-full rounded-2xl px-6 py-3.5 text-lg font-bold text-white disabled:opacity-60">
         {loading ? "Please wait…" : mode === "signin" ? "Sign in" : "Create free account"}
       </button>
     </form>

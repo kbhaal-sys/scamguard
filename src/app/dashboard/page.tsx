@@ -28,20 +28,20 @@ export default async function Dashboard() {
 
       {/* Stats */}
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl2 border border-line bg-white p-5">
+        <div className="glass glass-hover fade-up rounded-3xl p-5">
           <p className="text-sm text-inkmut">Plan</p>
           <p className="font-display text-2xl font-bold">{p ? PLAN_LABEL[p.subscription_status] : "—"}</p>
           {p?.subscription_status === "free" && (
             <Link href="/pricing" className="mt-1 inline-block text-sm font-semibold text-guard hover:underline">Upgrade →</Link>
           )}
         </div>
-        <div className="rounded-xl2 border border-line bg-white p-5">
+        <div className="glass glass-hover fade-up rounded-3xl p-5">
           <p className="text-sm text-inkmut">Scans this month</p>
           <p className="font-display text-2xl font-bold">
             {p ? (p.subscription_status === "free" ? `${p.scans_used_this_month} / ${p.monthly_scan_limit}` : `${p.scans_used_this_month} · unlimited`) : "—"}
           </p>
         </div>
-        <div className="flex items-center justify-center rounded-xl2 bg-guard p-5">
+        <div className="btn-shine fade-up d2 flex items-center justify-center rounded-3xl p-5">
           <Link href="/scan" className="text-center font-display text-xl font-bold text-white">+ New scan</Link>
         </div>
       </div>
@@ -60,10 +60,10 @@ export default async function Dashboard() {
             href="/scan"
           />
         ) : (
-          <ul className="divide-y divide-line overflow-hidden rounded-xl2 border border-line bg-white">
+          <ul className="glass divide-y divide-white/60 overflow-hidden rounded-3xl">
             {recent.map((s) => (
               <li key={s.id}>
-                <Link href={`/result/${s.id}`} className="flex items-center justify-between gap-4 p-4 hover:bg-paper">
+                <Link href={`/result/${s.id}`} className="flex items-center justify-between gap-4 p-4 transition hover:bg-white/60">
                   <div className="min-w-0">
                     <p className="truncate font-semibold">{s.verdict || s.category_detected}</p>
                     <p className="text-sm text-inkmut">{new Date(s.created_at).toLocaleString()} · {s.input_type}</p>
@@ -77,7 +77,7 @@ export default async function Dashboard() {
       </div>
 
       {/* Family circle placeholder */}
-      <div className="mt-10 rounded-xl2 bg-guard-soft p-7">
+      <div className="glass-tint mt-10 rounded-3xl p-7">
         <p className="text-xs font-bold uppercase tracking-wider text-guard-dark">Family plan · coming soon</p>
         <h2 className="mt-1 font-display text-2xl font-bold text-guard-dark">Family protection circle</h2>
         <p className="mt-2 max-w-2xl leading-relaxed text-ink/85">

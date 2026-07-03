@@ -77,9 +77,9 @@ export default function ScanForm() {
   }
 
   return (
-    <form onSubmit={submit} className="rounded-xl2 border border-line bg-white p-5 shadow-sm sm:p-7">
+    <form onSubmit={submit} className="glass fade-up rounded-3xl p-5 sm:p-7">
       {/* Tabs */}
-      <div className="mb-5 grid grid-cols-3 gap-2 rounded-xl bg-paper p-1.5" role="tablist" aria-label="Input type">
+      <div className="glass-soft mb-5 grid grid-cols-3 gap-2 rounded-2xl p-1.5" role="tablist" aria-label="Input type">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -88,7 +88,7 @@ export default function ScanForm() {
             aria-selected={tab === t.id}
             onClick={() => { setTab(t.id); setError(null); }}
             className={`rounded-lg px-3 py-2.5 text-[15px] font-semibold transition ${
-              tab === t.id ? "bg-guard text-white shadow" : "text-inkmut hover:text-ink"
+              tab === t.id ? "btn-shine text-white" : "text-inkmut hover:bg-white/50 hover:text-ink"
             }`}
           >
             {t.label}
@@ -104,7 +104,7 @@ export default function ScanForm() {
           onChange={(e) => setText(e.target.value)}
           rows={7}
           placeholder={"Example:\n\"Your package is held at customs. Pay the 2.99 fee here: dhl-parcel-verify.top/pay\""}
-          className="w-full rounded-xl border border-line bg-paper p-4 text-[16px] leading-relaxed outline-none focus:border-guard"
+          className="w-full rounded-2xl border border-white/70 bg-white/60 p-4 text-[16px] leading-relaxed outline-none backdrop-blur focus:border-guard focus:bg-white/80 transition"
         />
       )}
       {tab === "url" && (
@@ -113,7 +113,7 @@ export default function ScanForm() {
           onChange={(e) => setUrl(e.target.value)}
           inputMode="url"
           placeholder="https://the-link-you-received.example"
-          className="w-full rounded-xl border border-line bg-paper p-4 font-mono text-[15px] outline-none focus:border-guard"
+          className="w-full rounded-2xl border border-white/70 bg-white/60 p-4 font-mono text-[15px] outline-none backdrop-blur focus:border-guard focus:bg-white/80 transition"
         />
       )}
       {tab === "image" && (
@@ -128,7 +128,7 @@ export default function ScanForm() {
           <button
             type="button"
             onClick={() => fileInput.current?.click()}
-            className="flex w-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-line bg-paper p-8 text-inkmut hover:border-guard hover:text-ink"
+            className="glass-hover flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-guard/30 bg-white/40 p-8 text-inkmut backdrop-blur hover:border-guard hover:text-ink"
           >
             {preview ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -150,7 +150,7 @@ export default function ScanForm() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="w-full rounded-xl border border-line bg-paper p-3.5 text-[16px] outline-none focus:border-guard"
+          className="w-full rounded-2xl border border-white/70 bg-white/60 p-3.5 text-[16px] outline-none backdrop-blur focus:border-guard transition"
         >
           {CATEGORIES.map((c) => (
             <option key={c.id} value={c.id}>{c.label}</option>
@@ -159,7 +159,7 @@ export default function ScanForm() {
       </label>
 
       {error && (
-        <p role="alert" className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-[15px] font-medium text-risk-high">
+        <p role="alert" className="mt-4 rounded-xl border border-risk-high/20 bg-red-50/80 px-4 py-3 text-[15px] font-medium text-risk-high backdrop-blur">
           {error}
         </p>
       )}
@@ -167,7 +167,7 @@ export default function ScanForm() {
       <button
         type="submit"
         disabled={loading}
-        className="mt-6 w-full rounded-xl bg-guard px-6 py-4 text-lg font-bold text-white transition hover:bg-guard-dark disabled:opacity-60"
+        className="btn-shine mt-6 w-full rounded-2xl px-6 py-4 text-lg font-bold text-white disabled:opacity-60"
       >
         {loading ? "Checking… this takes a few seconds" : "Check risk"}
       </button>

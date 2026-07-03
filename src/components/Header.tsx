@@ -9,7 +9,7 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
+    <header className="sticky top-0 z-40 glass-soft border-b border-white/60">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
         <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold text-ink">
           <ShieldMark />
@@ -26,7 +26,7 @@ export default async function Header() {
               </Link>
               <Link
                 href="/scan"
-                className="rounded-full bg-guard px-5 py-2 font-semibold text-white hover:bg-guard-dark"
+                className="btn-shine rounded-full px-5 py-2 font-semibold text-white"
               >
                 New scan
               </Link>
@@ -39,7 +39,7 @@ export default async function Header() {
               </Link>
               <Link
                 href="/scan"
-                className="rounded-full bg-guard px-5 py-2 font-semibold text-white hover:bg-guard-dark"
+                className="btn-shine rounded-full px-5 py-2 font-semibold text-white"
               >
                 Check a message
               </Link>

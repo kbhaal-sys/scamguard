@@ -25,7 +25,7 @@ export default async function ScanPage() {
       </p>
       {user ? (
         remaining !== null && (
-          <p className="mt-3 inline-block rounded-full bg-guard-soft px-4 py-1.5 text-sm font-semibold text-guard-dark">
+          <p className="glass-tint mt-3 inline-block rounded-full px-4 py-1.5 text-sm font-semibold text-guard-dark">
             {remaining} free {remaining === 1 ? "scan" : "scans"} left this month
           </p>
         )

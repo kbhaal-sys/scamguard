@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-line bg-white/60">
+    <footer className="glass-soft mt-auto border-t border-white/60">
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-5 py-8 text-sm text-inkmut sm:flex-row sm:items-center sm:justify-between">
         <p>
           Scam Guard provides <strong>risk guidance</strong>, not legal or financial advice. No result

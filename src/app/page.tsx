@@ -6,10 +6,10 @@ export default function Landing() {
   return (
     <>
       {/* HERO */}
-      <section className="border-b border-line bg-white">
+      <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-5xl gap-10 px-5 py-16 md:grid-cols-2 md:items-center md:py-24">
-          <div>
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-guard-soft px-4 py-1.5 text-sm font-semibold text-guard-dark">
+          <div className="fade-up">
+            <p className="glass-tint pulse-glow mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-semibold text-guard-dark">
               <ShieldMark className="h-4 w-4" /> Before you pay, scan it.
             </p>
             <h1 className="font-display text-4xl font-bold leading-tight sm:text-[44px]">
@@ -20,10 +20,10 @@ export default function Landing() {
               plain language — what the red flags are, why they matter, and exactly what to do next.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/scan" className="rounded-full bg-guard px-7 py-3.5 text-lg font-bold text-white hover:bg-guard-dark">
+              <Link href="/scan" className="btn-shine rounded-full px-7 py-3.5 text-lg font-bold text-white">
                 Check something now
               </Link>
-              <Link href="/pricing" className="rounded-full border border-line bg-white px-7 py-3.5 text-lg font-semibold hover:border-guard">
+              <Link href="/pricing" className="glass-soft glass-hover rounded-full px-7 py-3.5 text-lg font-semibold">
                 See pricing
               </Link>
             </div>
@@ -33,7 +33,7 @@ export default function Landing() {
           </div>
 
           {/* Example result preview */}
-          <div className="rounded-xl2 border border-line bg-paper p-6 shadow-sm" aria-label="Example result">
+          <div className="glass floaty fade-up d2 rounded-3xl p-6" aria-label="Example result">
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-inkmut">Example result</p>
             <RiskBadge level="High" />
             <p className="mt-3 font-semibold">
@@ -58,7 +58,7 @@ export default function Landing() {
             ["2. We check for scam patterns", "Urgency, impersonation, look-alike domains, unusual payment requests, and dozens of other indicators."],
             ["3. Get a plain-language answer", "A risk level, the red flags explained, what to do, what not to do — and a safe reply you can send."],
           ].map(([t, b]) => (
-            <div key={t} className="rounded-xl2 border border-line bg-white p-6">
+            <div key={t} className="glass glass-hover rounded-3xl p-6">
               <h3 className="font-display text-lg font-bold">{t}</h3>
               <p className="mt-2 leading-relaxed text-inkmut">{b}</p>
             </div>
@@ -67,9 +67,9 @@ export default function Landing() {
       </section>
 
       {/* FAMILY */}
-      <section className="border-t border-line bg-white">
+      <section>
         <div className="mx-auto max-w-5xl px-5 py-16">
-          <div className="rounded-xl2 bg-guard-soft p-8 sm:p-10">
+          <div className="glass-tint rounded-3xl p-8 sm:p-10">
             <h2 className="font-display text-2xl font-bold text-guard-dark sm:text-3xl">
               Protect your parents, too.
             </h2>
@@ -77,7 +77,7 @@ export default function Landing() {
               Help your parents check suspicious messages before they pay, click, or share personal data.
               The Family plan adds a shared protection circle — so a “is this real?” question is one tap away.
             </p>
-            <Link href="/pricing" className="mt-6 inline-block rounded-full bg-guard px-6 py-3 font-bold text-white hover:bg-guard-dark">
+            <Link href="/pricing" className="btn-shine mt-6 inline-block rounded-full px-6 py-3 font-bold text-white">
               See the Family plan
             </Link>
           </div>

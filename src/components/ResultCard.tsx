@@ -11,9 +11,9 @@ const SCORE_COLOR: Record<string, string> = {
 
 export default function ResultCard({ scan }: { scan: ScanRow }) {
   return (
-    <article className="rounded-xl2 border border-line bg-white shadow-sm print:border-0 print:shadow-none">
+    <article className="glass fade-up rounded-3xl print:border-0 print:shadow-none">
       {/* Head */}
-      <div className="flex flex-col gap-4 border-b border-line p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <div className="flex flex-col gap-4 border-b border-white/60 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div>
           <RiskBadge level={scan.risk_level} big />
           <p className="mt-3 max-w-xl text-lg font-semibold leading-snug text-ink">{scan.verdict}</p>
@@ -40,7 +40,7 @@ export default function ResultCard({ scan }: { scan: ScanRow }) {
             <h2 className="mb-3 font-display text-lg font-bold">Red flags we found</h2>
             <ul className="space-y-3">
               {scan.red_flags.map((f, i) => (
-                <li key={i} className="rounded-xl border border-line bg-paper p-4">
+                <li key={i} className="glass-soft rounded-2xl p-4">
                   <p className="font-semibold text-risk-high">⚑ {f.title}</p>
                   <p className="mt-1 text-[15.5px] leading-relaxed text-ink/85">{f.explanation}</p>
                 </li>
@@ -51,7 +51,7 @@ export default function ResultCard({ scan }: { scan: ScanRow }) {
 
         <div className="grid gap-6 sm:grid-cols-2">
           {scan.recommended_actions?.length > 0 && (
-            <section className="rounded-xl bg-guard-soft p-5">
+            <section className="glass-tint rounded-2xl p-5">
               <h2 className="mb-2 font-display text-lg font-bold text-guard-dark">Do this now</h2>
               <ul className="list-inside space-y-2 text-[15.5px] leading-relaxed">
                 {scan.recommended_actions.map((a, i) => (
@@ -61,7 +61,7 @@ export default function ResultCard({ scan }: { scan: ScanRow }) {
             </section>
           )}
           {scan.what_not_to_do?.length > 0 && (
-            <section className="rounded-xl bg-red-50 p-5">
+            <section className="rounded-2xl border border-risk-high/15 bg-red-50/70 p-5 backdrop-blur">
               <h2 className="mb-2 font-display text-lg font-bold text-risk-high">Do not</h2>
               <ul className="space-y-2 text-[15.5px] leading-relaxed">
                 {scan.what_not_to_do.map((a, i) => (
@@ -75,7 +75,7 @@ export default function ResultCard({ scan }: { scan: ScanRow }) {
         {scan.safe_reply && (
           <section>
             <h2 className="mb-2 font-display text-lg font-bold">A safe reply you can send</h2>
-            <blockquote className="rounded-xl border-l-4 border-guard bg-paper p-4 text-[16px] italic leading-relaxed">
+            <blockquote className="glass-soft rounded-2xl border-l-4 border-l-guard p-4 text-[16px] italic leading-relaxed">
               “{scan.safe_reply}”
             </blockquote>
           </section>
@@ -83,7 +83,7 @@ export default function ResultCard({ scan }: { scan: ScanRow }) {
 
         <ResultActions scan={scan} />
 
-        <p className="border-t border-line pt-4 text-[13px] leading-relaxed text-inkmut">
+        <p className="border-t border-white/60 pt-4 text-[13px] leading-relaxed text-inkmut">
           This assessment is automated risk guidance based on patterns in the content you provided. It is
           not legal or financial advice, and no result means something is guaranteed safe. When money or
           personal data is involved, verify through an official channel first.

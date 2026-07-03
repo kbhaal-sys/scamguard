@@ -27,10 +27,10 @@ export default async function History() {
         {scans.length === 0 ? (
           <EmptyState title="Nothing here yet" body="Your past scans will appear here so you can revisit any verdict." cta="Run a scan" href="/scan" />
         ) : (
-          <ul className="divide-y divide-line overflow-hidden rounded-xl2 border border-line bg-white">
+          <ul className="glass fade-up divide-y divide-white/60 overflow-hidden rounded-3xl">
             {scans.map((s) => (
               <li key={s.id}>
-                <Link href={`/result/${s.id}`} className="flex items-center justify-between gap-4 p-4 hover:bg-paper">
+                <Link href={`/result/${s.id}`} className="flex items-center justify-between gap-4 p-4 transition hover:bg-white/60">
                   <div className="min-w-0">
                     <p className="truncate font-semibold">{s.verdict || s.category_detected}</p>
                     <p className="text-sm text-inkmut">

@@ -41,13 +41,13 @@ export default function ResultActions({ scan }: { scan: ScanRow }) {
 
   return (
     <div className="flex flex-wrap gap-3 print:hidden">
-      <button onClick={copy} className="rounded-full border border-line bg-white px-5 py-2.5 font-semibold hover:border-guard">
+      <button onClick={copy} className="glass-soft glass-hover rounded-full px-5 py-2.5 font-semibold">
         {copied ? "Copied ✓" : "Copy result"}
       </button>
-      <button onClick={() => window.print()} className="rounded-full border border-line bg-white px-5 py-2.5 font-semibold hover:border-guard">
+      <button onClick={() => window.print()} className="glass-soft glass-hover rounded-full px-5 py-2.5 font-semibold">
         Download PDF
       </button>
-      <button onClick={share} className="rounded-full bg-guard px-5 py-2.5 font-semibold text-white hover:bg-guard-dark">
+      <button onClick={share} className="btn-shine rounded-full px-5 py-2.5 font-semibold text-white">
         Share warning with family
       </button>
     </div>

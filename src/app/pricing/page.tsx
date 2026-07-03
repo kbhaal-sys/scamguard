@@ -39,7 +39,7 @@ export default function Pricing() {
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {PLANS.map((p) => (
           <div key={p.name}
-            className={`flex flex-col rounded-xl2 border bg-white p-7 ${p.featured ? "border-guard shadow-lg ring-2 ring-guard/20" : "border-line"}`}>
+            className={`glass glass-hover flex flex-col rounded-3xl p-7 ${p.featured ? "ring-2 ring-guard/40" : ""}`}>
             {p.featured && <p className="mb-2 text-xs font-bold uppercase tracking-wider text-guard">Most popular</p>}
             <h2 className="font-display text-2xl font-bold">{p.name}</h2>
             <p className="mt-1 text-inkmut">{p.tagline}</p>
@@ -52,13 +52,13 @@ export default function Pricing() {
               ))}
             </ul>
             <Link href={p.cta.href}
-              className={`mt-6 rounded-full px-6 py-3 text-center font-bold ${p.featured ? "bg-guard text-white hover:bg-guard-dark" : "border border-line hover:border-guard"}`}>
+              className={`mt-6 rounded-full px-6 py-3 text-center font-bold ${p.featured ? "btn-shine text-white" : "glass-soft glass-hover"}`}>
               {p.cta.label}
             </Link>
           </div>
         ))}
       </div>
-      <div className="mt-12 rounded-xl2 bg-guard-soft p-8">
+      <div className="glass-tint mt-12 rounded-3xl p-8">
         <h2 className="font-display text-xl font-bold text-guard-dark">Elderly parent protection mode</h2>
         <p className="mt-2 max-w-3xl leading-relaxed text-ink/85">
           Help your parents check suspicious messages before they pay, click, or share personal data.
