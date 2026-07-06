@@ -5,7 +5,7 @@ import RiskBadge from "@/components/RiskBadge";
 import EmptyState from "@/components/EmptyState";
 import type { ScanRow, UserProfile } from "@/lib/types";
 
-export const metadata = { title: "Dashboard — Scam Guard" };
+export const metadata = { title: "Dashboard — SPeye" };
 
 const PLAN_LABEL = { free: "Free", plus: "Plus", family: "Family" } as const;
 
@@ -23,7 +23,7 @@ export default async function Dashboard() {
   const recent = (scans ?? []) as ScanRow[];
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-10">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-5 sm:py-10">
       <h1 className="font-display text-3xl font-bold">Your dashboard</h1>
 
       {/* Stats */}

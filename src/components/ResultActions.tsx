@@ -7,7 +7,7 @@ export default function ResultActions({ scan }: { scan: ScanRow }) {
 
   function asText(): string {
     const lines = [
-      `Scam Guard result — ${scan.risk_level} risk (${scan.risk_score}/100)`,
+      `SPeye result — ${scan.risk_level} risk (${scan.risk_score}/100)`,
       scan.verdict,
       "",
       "Red flags:",
@@ -20,7 +20,7 @@ export default function ResultActions({ scan }: { scan: ScanRow }) {
       ...scan.what_not_to_do.map((a) => `- ${a}`),
     ];
     if (scan.safe_reply) lines.push("", `Safe reply: "${scan.safe_reply}"`);
-    lines.push("", "Checked with Scam Guard — risk guidance, not legal or financial advice.");
+    lines.push("", "Checked with SPeye — risk guidance, not legal or financial advice.");
     return lines.join("\n");
   }
 
@@ -33,7 +33,7 @@ export default function ResultActions({ scan }: { scan: ScanRow }) {
   async function share() {
     const text = asText();
     if (navigator.share) {
-      try { await navigator.share({ title: "Scam Guard warning", text }); } catch { /* cancelled */ }
+      try { await navigator.share({ title: "SPeye warning", text }); } catch { /* cancelled */ }
     } else {
       await copy();
     }

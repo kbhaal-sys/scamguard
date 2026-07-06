@@ -2,7 +2,7 @@ import Link from "next/link";
 import ScanForm from "@/components/ScanForm";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
 
-export const metadata = { title: "New scan — Scam Guard" };
+export const metadata = { title: "New scan — SPeye" };
 
 export default async function ScanPage() {
   const supabase = await createClient();
@@ -18,7 +18,7 @@ export default async function ScanPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-5 py-10">
+    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-5 sm:py-10">
       <h1 className="font-display text-3xl font-bold">Check something suspicious</h1>
       <p className="mt-2 text-lg text-inkmut">
         A message, a link, an invoice, an offer — if it involves money or personal data, scan it first.

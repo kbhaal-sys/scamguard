@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Scam Guard — Before you pay, scan it.",
+  title: "SPeye — Before you pay, scan it.",
   description:
     "Check if a message, link, invoice, or offer is a scam before you pay. Upload a screenshot, paste a message, or enter a link and get the risk explained in plain language.",
 };

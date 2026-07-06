@@ -3,7 +3,7 @@ import type { AnalysisResult } from "./types";
 // ---------------------------------------------------------------
 // Scam-analysis prompt. The model must return STRICT JSON only.
 // ---------------------------------------------------------------
-export const SYSTEM_PROMPT = `You are the analysis engine of "Scam Guard", a consumer app that helps
+export const SYSTEM_PROMPT = `You are the analysis engine of "SPeye" (Scam Protection Eye), a consumer app that helps
 non-technical people (including older adults) decide whether a message, link,
 invoice, offer, or document is safe, suspicious, or likely a scam.
 

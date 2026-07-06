@@ -5,8 +5,8 @@ import { CATEGORIES, type InputType } from "@/lib/types";
 
 const TABS: { id: InputType; label: string; hint: string }[] = [
   { id: "text", label: "Paste text", hint: "The message, email, or offer you received" },
-  { id: "image", label: "Upload screenshot", hint: "PNG, JPG, or WEBP — up to 4 MB" },
-  { id: "url", label: "Check a link", hint: "The web address you were sent" },
+  { id: "image", label: "Screenshot", hint: "PNG, JPG, or WEBP — up to 4 MB" },
+  { id: "url", label: "Check link", hint: "The web address you were sent" },
 ];
 
 export default function ScanForm() {
@@ -77,7 +77,7 @@ export default function ScanForm() {
   }
 
   return (
-    <form onSubmit={submit} className="glass fade-up rounded-3xl p-5 sm:p-7">
+    <form onSubmit={submit} className="glass fade-up d2 rounded-3xl p-4 sm:p-7">
       {/* Tabs */}
       <div className="glass-soft mb-5 grid grid-cols-3 gap-2 rounded-2xl p-1.5" role="tablist" aria-label="Input type">
         {TABS.map((t) => (
@@ -87,7 +87,7 @@ export default function ScanForm() {
             role="tab"
             aria-selected={tab === t.id}
             onClick={() => { setTab(t.id); setError(null); }}
-            className={`rounded-lg px-3 py-2.5 text-[15px] font-semibold transition ${
+            className={`rounded-lg px-2 py-2.5 text-[13px] font-semibold transition sm:px-3 sm:text-[15px] ${
               tab === t.id ? "btn-shine text-white" : "text-inkmut hover:bg-white/50 hover:text-ink"
             }`}
           >
@@ -172,7 +172,7 @@ export default function ScanForm() {
         {loading ? "Checking… this takes a few seconds" : "Check risk"}
       </button>
       <p className="mt-3 text-center text-[13px] text-inkmut">
-        Scam Guard provides risk guidance, not legal or financial advice.
+        SPeye provides risk guidance, not legal or financial advice.
       </p>
     </form>
   );

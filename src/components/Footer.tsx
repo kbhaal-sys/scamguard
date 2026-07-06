@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="glass-soft mt-auto border-t border-white/60">
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-5 py-8 text-sm text-inkmut sm:flex-row sm:items-center sm:justify-between">
         <p>
-          Scam Guard provides <strong>risk guidance</strong>, not legal or financial advice. No result
+          SPeye provides <strong>risk guidance</strong>, not legal or financial advice. No result
           means something is guaranteed safe — when in doubt, verify through an official channel.
         </p>
         <nav className="flex shrink-0 gap-5">

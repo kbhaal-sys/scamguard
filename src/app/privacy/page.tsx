@@ -1,4 +1,4 @@
-export const metadata = { title: "Privacy policy — Scam Guard" };
+export const metadata = { title: "Privacy policy — SPeye" };
 
 export default function Privacy() {
   return (

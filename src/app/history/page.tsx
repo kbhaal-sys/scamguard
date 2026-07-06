@@ -5,7 +5,7 @@ import RiskBadge from "@/components/RiskBadge";
 import EmptyState from "@/components/EmptyState";
 import type { ScanRow } from "@/lib/types";
 
-export const metadata = { title: "Scan history — Scam Guard" };
+export const metadata = { title: "Scan history — SPeye" };
 
 export default async function History() {
   const supabase = await createClient();
@@ -20,7 +20,7 @@ export default async function History() {
   const scans = (data ?? []) as ScanRow[];
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-10">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-5 sm:py-10">
       <h1 className="font-display text-3xl font-bold">Scan history</h1>
       <p className="mt-2 text-inkmut">Everything you've checked, most recent first.</p>
       <div className="mt-6">

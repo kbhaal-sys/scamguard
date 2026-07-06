@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const metadata = { title: "Pricing — Scam Guard" };
+export const metadata = { title: "Pricing — SPeye" };
 
 const PLANS = [
   {
@@ -34,7 +34,7 @@ export default function Pricing() {
     <div className="mx-auto max-w-5xl px-5 py-14">
       <h1 className="text-center font-display text-3xl font-bold sm:text-4xl">Simple pricing</h1>
       <p className="mx-auto mt-3 max-w-xl text-center text-lg text-inkmut">
-        One scam avoided pays for years of Scam Guard.
+        One scam avoided pays for years of SPeye.
       </p>
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {PLANS.map((p) => (

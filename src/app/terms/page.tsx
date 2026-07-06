@@ -1,4 +1,4 @@
-export const metadata = { title: "Terms of service — Scam Guard" };
+export const metadata = { title: "Terms of service — SPeye" };
 
 export default function Terms() {
   return (
@@ -7,11 +7,11 @@ export default function Terms() {
       <p className="mt-2 text-sm text-inkmut">Template for the MVP — review with a legal professional before public launch.</p>
       <div className="mt-6 space-y-5 leading-relaxed">
         <section>
-          <h2 className="font-display text-xl font-bold">What Scam Guard is</h2>
-          <p>Scam Guard provides automated risk guidance about potentially fraudulent messages, links, documents, and offers. It highlights patterns and explains risks in plain language.</p>
+          <h2 className="font-display text-xl font-bold">What SPeye is</h2>
+          <p>SPeye provides automated risk guidance about potentially fraudulent messages, links, documents, and offers. It highlights patterns and explains risks in plain language.</p>
         </section>
         <section>
-          <h2 className="font-display text-xl font-bold">What Scam Guard is not</h2>
+          <h2 className="font-display text-xl font-bold">What SPeye is not</h2>
           <p>It is not legal advice, financial advice, or a guarantee. No result means something is definitely safe or definitely a scam. Final decisions — and verification through official channels — remain your responsibility.</p>
         </section>
         <section>

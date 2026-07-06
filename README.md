@@ -1,4 +1,4 @@
-# Scam Guard — MVP
+# SPeye — MVP
 
 **Before you pay, scan it.** A web app that checks whether a message, screenshot, email,
 link, invoice, payment request, listing, contract, or investment offer is safe, suspicious,
