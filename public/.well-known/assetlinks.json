@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "app.vercel.scamguard_olive.twa",
-        "sha256_cert_fingerprints": ["AE:D8:A0:3F:E5:60:69:99:03:9A:AC:36:AF:B8:69:9E:1E:33:2D:9E:B1:7B:07:06:8D:9C:6E:38:42:B2:60:F3"]
+        "sha256_cert_fingerprints": ["78:2A:35:D0:F2:79:41:3F:C0:AE:97:8E:B1:6A:21:F5:F2:EE:65:81:D7:1B:3A:EA:0A:E6:0A:21:83:C7:91:A8"]
       }
     }]
