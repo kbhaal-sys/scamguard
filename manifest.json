@@ -1,13 +1,16 @@
 {
   "background_color": "#ffffff",
-  "description": "Protect",
+  "description": "Check if a message, link, invoice, or offer is a scam before you pay. Upload a screenshot, paste a message, or enter a link and get the risk explained in plain language.",
   "dir": "ltr",
-  "display": "standalone",
+  "display": "fullscreen",
   "name": "SPeye",
   "orientation": "any",
   "scope": "/",
   "short_name": "SPeye",
   "start_url": "/",
   "theme_color": "#ffffff",
-  "id": "speyeapp"
+  "id": "SPeyeapp",
+  "categories": [
+    "utilities"
+  ]
 }
