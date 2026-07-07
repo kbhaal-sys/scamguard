@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.scamguard_olive.twa",
+        "sha256_cert_fingerprints": ["AE:D8:A0:3F:E5:60:69:99:03:9A:AC:36:AF:B8:69:9E:1E:33:2D:9E:B1:7B:07:06:8D:9C:6E:38:42:B2:60:F3"]
+      }
+    }]
