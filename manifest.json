@@ -1,0 +1,13 @@
+{
+  "background_color": "#ffffff",
+  "description": "Protect",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "SPeye",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "SPeye",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "id": "speyeapp"
+}
