@@ -55,13 +55,13 @@ export function EyeMark({ className = "h-8 w-8" }: { className?: string }) {
     <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
       <path
         d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.4 7.5 10 4.3-1.6 7.5-5.4 7.5-10v-6L12 2.5Z"
-        fill="#0F6B5C"
+        fill="#1A5FD0"
       />
       <path
         d="M12 8.2c-2.9 0-5 2.2-5.8 3.6.8 1.4 2.9 3.6 5.8 3.6s5-2.2 5.8-3.6c-.8-1.4-2.9-3.6-5.8-3.6Z"
         fill="#fff"
       />
-      <circle cx="12" cy="11.8" r="1.9" fill="#0F6B5C" />
+      <circle cx="12" cy="11.8" r="1.9" fill="#1A5FD0" />
       <circle cx="12.7" cy="11.1" r="0.6" fill="#fff" />
     </svg>
   );
